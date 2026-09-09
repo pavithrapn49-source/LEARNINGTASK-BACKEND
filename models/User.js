@@ -23,7 +23,12 @@ const userSchema = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: ["Super Admin", "Admin", "Teacher", "Student"],
+      enum: [
+        "Super Admin",
+        "Admin",
+        "Teacher",
+        "Student",
+      ],
       default: "Student",
     },
 
@@ -32,10 +37,35 @@ const userSchema = new mongoose.Schema(
       enum: ["Active", "Inactive"],
       default: "Active",
     },
+
+    phone: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+
+    department: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+
+    profileImage: {
+      type: String,
+      default: "",
+    },
+
+    lastLogin: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model(
+  "User",
+  userSchema
+);
