@@ -9,35 +9,15 @@ const app = express();
 
 connectDB();
 
-// CORS configuration
-const allowedOrigins = [
-  "https://learning-task-enmk.vercel.app",
-  "http://localhost:5173",
-];
-
+// Allow the deployed frontend and local frontend
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin
-      // (Postman, server-to-server requests, etc.)
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(
-        new Error("Not allowed by CORS")
-      );
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
+    origin: [
+      "https://learning-task-enmk.vercel.app",
+      "http://localhost:5173",
     ],
-   
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
